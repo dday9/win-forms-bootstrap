@@ -891,6 +891,37 @@ Namespace Bootstrap
                 Return TextRenderer.MeasureText("M", rootElement.Font).Width
             End Function
 
+            Public Function Monospace() As Font
+                Return New Font(Bootstrap.Utilities.Typography.MonospaceStack.First(), 16, GraphicsUnit.Pixel)
+            End Function
+
+            Public Function MonospaceStack() As FontFamily()
+                Dim installedFamilies As List(Of FontFamily) = New List(Of FontFamily)
+                Dim fontCollection As InstalledFontCollection = New InstalledFontCollection()
+
+                If fontCollection.Families.Any(Function(family) family.Name = "SFMono-Regular") Then
+                    installedFamilies.Add(New FontFamily("SFMono-Regular"))
+                End If
+                If fontCollection.Families.Any(Function(family) family.Name = "Menlo") Then
+                    installedFamilies.Add(New FontFamily("Menlo"))
+                End If
+                If fontCollection.Families.Any(Function(family) family.Name = "Monaco") Then
+                    installedFamilies.Add(New FontFamily("Monaco"))
+                End If
+                If fontCollection.Families.Any(Function(family) family.Name = "Consolas") Then
+                    installedFamilies.Add(New FontFamily("Consolas"))
+                End If
+                If fontCollection.Families.Any(Function(family) family.Name = "Liberation Mono") Then
+                    installedFamilies.Add(New FontFamily("Liberation Mono"))
+                End If
+                If fontCollection.Families.Any(Function(family) family.Name = "Courier New") Then
+                    installedFamilies.Add(New FontFamily("Courier New"))
+                End If
+                installedFamilies.Add(FontFamily.GenericMonospace)
+
+                Return installedFamilies.ToArray()
+            End Function
+
         End Module
 
     End Namespace
