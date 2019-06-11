@@ -836,33 +836,6 @@ Namespace Bootstrap
 
         Public Module Typography
 
-            Public Function Close() As String
-                Return Convert.ToChar(10005).ToString()
-            End Function
-
-            Public Function Font() As Font
-                Return New Font(Bootstrap.Utilities.Typography.FontStack.First(), 16, GraphicsUnit.Pixel)
-            End Function
-
-            Public Function FontStack() As FontFamily()
-                Dim installedFamilies As List(Of FontFamily) = New List(Of FontFamily)
-                Dim fontCollection As InstalledFontCollection = New InstalledFontCollection()
-
-                If fontCollection.Families.Any(Function(family) family.Name = "Segoe UI") Then
-                    installedFamilies.Add(New FontFamily("Segoe UI"))
-                End If
-                If fontCollection.Families.Any(Function(family) family.Name = "Roboto") Then
-                    installedFamilies.Add(New FontFamily("Roboto"))
-                End If
-                If fontCollection.Families.Any(Function(family) family.Name = "Helvetica Neue") Then
-                    installedFamilies.Add(New FontFamily("Helvetica Neue"))
-                End If
-
-                installedFamilies.Add(FontFamily.GenericSansSerif)
-
-                Return installedFamilies.ToArray()
-            End Function
-
             Public Function CalculateEM(ByVal font As Font) As Double
                 If font Is Nothing Then
                     Throw New ArgumentNullException("Font cannot be null.")
@@ -889,6 +862,33 @@ Namespace Bootstrap
                 End If
 
                 Return TextRenderer.MeasureText("M", rootElement.Font).Width
+            End Function
+
+            Public Function Close() As String
+                Return Convert.ToChar(10005).ToString()
+            End Function
+
+            Public Function Font() As Font
+                Return New Font(Bootstrap.Utilities.Typography.FontStack.First(), 16, GraphicsUnit.Pixel)
+            End Function
+
+            Public Function FontStack() As FontFamily()
+                Dim installedFamilies As List(Of FontFamily) = New List(Of FontFamily)
+                Dim fontCollection As InstalledFontCollection = New InstalledFontCollection()
+
+                If fontCollection.Families.Any(Function(family) family.Name = "Segoe UI") Then
+                    installedFamilies.Add(New FontFamily("Segoe UI"))
+                End If
+                If fontCollection.Families.Any(Function(family) family.Name = "Roboto") Then
+                    installedFamilies.Add(New FontFamily("Roboto"))
+                End If
+                If fontCollection.Families.Any(Function(family) family.Name = "Helvetica Neue") Then
+                    installedFamilies.Add(New FontFamily("Helvetica Neue"))
+                End If
+
+                installedFamilies.Add(FontFamily.GenericSansSerif)
+
+                Return installedFamilies.ToArray()
             End Function
 
             Public Function Monospace() As Font
