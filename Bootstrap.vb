@@ -836,6 +836,11 @@ Namespace Bootstrap
 
         Public Module Typography
 
+            ''' <summary>
+            ''' Calculates the "EM" of a given font.
+            ''' </summary>
+            ''' <param name="font">The font to measure.</param>
+            ''' <returns>The width of the letter 'M' of a given font, in pixels.</returns>
             Public Function CalculateEM(ByVal font As Font) As Double
                 If font Is Nothing Then
                     Throw New ArgumentNullException("Font cannot be null.")
@@ -844,6 +849,11 @@ Namespace Bootstrap
                 Return TextRenderer.MeasureText("M", font).Width
             End Function
 
+            ''' <summary>
+            ''' Calculates the "EM" of a given control's font.
+            ''' </summary>
+            ''' <param name="control">The control who' font to measure.</param>
+            ''' <returns>The width of the letter 'M' of a given control's font, in pixels.</returns>
             Public Function CalculateEM(ByVal control As System.Windows.Forms.Control) As Double
                 If control Is Nothing Then
                     Throw New ArgumentNullException("Control cannot be null.")
@@ -852,6 +862,11 @@ Namespace Bootstrap
                 Return TextRenderer.MeasureText("M", control.Font).Width
             End Function
 
+            ''' <summary>
+            ''' Calculates the root "EM" of a given control's font.
+            ''' </summary>
+            ''' <param name="control">The control who' font to measure.</param>
+            ''' <returns>The width of the letter 'M' of a given control's form's font, in pixels.</returns>
             Public Function CalculateREM(ByVal control As System.Windows.Forms.Control) As Double
                 If control Is Nothing Then
                     Throw New ArgumentNullException("Control cannot be null.")
@@ -864,14 +879,27 @@ Namespace Bootstrap
                 Return TextRenderer.MeasureText("M", rootElement.Font).Width
             End Function
 
+            ''' <summary>
+            ''' Gets the unicode character for the dismiss/close icon
+            ''' </summary>
+            ''' <returns>String</returns>
             Public Function Close() As String
                 Return Convert.ToChar(10005).ToString()
             End Function
 
+            ''' <summary>
+            ''' Gets the default font that bootstrap uses based on the fonts that the current machine has
+            ''' </summary>
+            ''' <returns>Sans-Serif font at 16px</returns>
             Public Function Font() As Font
                 Return New Font(Bootstrap.Utilities.Typography.FontStack.First(), 16, GraphicsUnit.Pixel)
             End Function
 
+            ''' <summary>
+            ''' Gets the installed fonts on the current machine that bootstrap uses.
+            ''' </summary>
+            ''' <returns>Font array</returns>
+            ''' <remarks>For more information on font stacks, visit: https://www.smashingmagazine.com/2009/09/complete-guide-to-css-font-stacks/</remarks>
             Public Function FontStack() As FontFamily()
                 Dim installedFamilies As List(Of FontFamily) = New List(Of FontFamily)
                 Dim fontCollection As InstalledFontCollection = New InstalledFontCollection()
@@ -891,10 +919,19 @@ Namespace Bootstrap
                 Return installedFamilies.ToArray()
             End Function
 
+            ''' <summary>
+            ''' Gets the default monospace font that bootstrap uses based on the fonts that the current machine has
+            ''' </summary>
+            ''' <returns>Monospace font at 16px</returns>
             Public Function Monospace() As Font
                 Return New Font(Bootstrap.Utilities.Typography.MonospaceStack.First(), 16, GraphicsUnit.Pixel)
             End Function
 
+            ''' <summary>
+            ''' Gets the installed fonts on the current machine that bootstrap uses for monospace fonts.
+            ''' </summary>
+            ''' <returns>Font array</returns>
+            ''' <remarks>For more information on font stacks, visit: https://www.smashingmagazine.com/2009/09/complete-guide-to-css-font-stacks/</remarks>
             Public Function MonospaceStack() As FontFamily()
                 Dim installedFamilies As List(Of FontFamily) = New List(Of FontFamily)
                 Dim fontCollection As InstalledFontCollection = New InstalledFontCollection()
