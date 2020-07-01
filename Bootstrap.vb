@@ -618,7 +618,7 @@ Namespace Bootstrap
                 MyBase.OnMouseClick(e)
 
                 _checked = Not _checked
-                Me.Invalidate(True)
+                OnCheckedChanged()
             End Sub
 
             Protected Overrides Sub OnMouseMove(ByVal e As MouseEventArgs)
